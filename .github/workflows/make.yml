@@ -1,0 +1,37 @@
+name: C/C++ with Make
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  build-winapi:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Build WinAPI project
+        run: |
+          cd winapi
+          make
+      - name: Upload WinAPI Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: compiled-artifact-winapi
+          path: ./winapi/bin/*.exe
+  build-stdlib:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Build STDLIB project
+        run: |
+          cd stdlib
+          make
+      - name: Upload STDLIB Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: compiled-artifact-stdlib
+          path: ./stdlib/bin/*.exe
