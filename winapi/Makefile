@@ -11,8 +11,8 @@ INCLUDE    := -Iinclude
 LIBRARIES   :=
 EXECUTABLE  := main
 
-SRCS := $(wildcard $(SRC)/*.byl)
-OBJS := $(SRCS:$(SRC)/%.byl=$(BUILD)/%.o)
+SRCS := $(wildcard $(SRC)/*.cpp)
+OBJS := $(SRCS:$(SRC)/%.cpp=$(BUILD)/%.o)
 
 all: $(BIN)/$(EXECUTABLE)
 
@@ -23,7 +23,7 @@ run: clean all
 $(BIN)/$(EXECUTABLE): $(OBJS)
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) $^ -o $@ $(LIBRARIES) $(LD_FLAGS)
 
-$(BUILD)/%.o: $(SRC)/%.byl
+$(BUILD)/%.o: $(SRC)/%.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c $< -o $@ $(LIBRARIES) $(LD_FLAGS)
 
 clean:
