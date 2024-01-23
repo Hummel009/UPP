@@ -35,6 +35,7 @@
 #define малворд(l) ((WORD) (((DWORD_PTR) (l)) & 0xffff))
 #define рэінт_прывядз reinterpret_cast
 #define стат_прывядз static_cast
+#define унікальны make_unique
 
 #define уваход main
 
@@ -80,5 +81,7 @@
 #define карта std::map
 
 #define функцыя function
+
+#define аўта auto
 
 #endif
